@@ -1,0 +1,5 @@
+export { generatePresentation } from "./generator"
+export type { GeneratorOptions, GenerationResult, SlideConfig } from "./types"
+export { DEFAULT_THEME } from "./config"
+export type { ThemeConfig } from "./types"
+export * as pptxgen from "pptxgenjs"
