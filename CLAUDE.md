@@ -42,6 +42,16 @@ npm run clean    # dist/ entfernen
 - `.claude/requirements/GESCHICHTE.md` — Historie abgeschlossener Arbeit
 - Bei Unterbrechung: STATUS.md als Anker hinterlassen, bei Wiederaufnahme dort weiterlesen
 
+### WICHTIG: Anforderungen-Verwaltung
+
+**ALLES** was `.claude/requirements/` betrifft muss über den Agenten `requirements-manager` laufen.
+
+- Niemals `.claude/requirements/` Dateien direkt bearbeiten (Read/Write/Edit/Write)
+- Niemals `INDEX.md` referenzieren — existiert nicht
+- Wenn der User eine Anforderung beschreibt → sofort `requirements-manager` Agent starten
+- Wenn der User "in die Anforderungen aufnehmen", "REQ erstellen", "Status ändern" sagt → Agent verwenden
+- Wenn der User "abgeschlossen" zu einer Anforderung sagt → Agent mit "abgeschlossen" prompt aufrufen
+
 ## Richtlinien
 
 - Code auf Englisch, Kommentare auf Deutsch
