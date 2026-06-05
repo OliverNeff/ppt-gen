@@ -8,7 +8,7 @@ Master-Index aller Projektanforderungen. Eintrag für jede Anforderung, Status-T
 
 | ID   | Titel                        | Status     | Priorität | Erstellt   | Abgeschlossen |
 | ---  | ---------------------------- | ---------- | --------- | ---------- | ------------- |
-| REQ-001 | MD → PPT Konverter         | Offen      | Hoch      | 2026-06-05 |               |
+| REQ-001 | MD → PPT Konverter         | In Arbeit  | Hoch      | 2026-06-05 |               |
 
 ---
 
@@ -48,7 +48,7 @@ Zusätzliche Informationen, Entscheiungen, Abhängigkeiten.
 
 ### REQ-001 — MD → PPT Konverter
 
-**Status:** Offen
+**Status:** In Arbeit
 **Priorität:** Hoch
 **Erstellt:** 2026-06-05
 **Abgeschlossen:**
@@ -59,50 +59,98 @@ Aus einer Markdown-Datei soll eine PowerPoint-Präsentation automatisch generier
 
 #### MD-Struktur → PPT-Mapping
 
-Die MD-Datei verwendet folgende Struktur:
+**Konvention:** Die MD-Datei beginnt mit genau einer `#`-Zeile als Titelfolie. Jede `##`-Zeile markiert den Beginn einer neuen Folie. `---` trennt Abschnitte (verpflichtend, nicht optional).
 
 ```markdown
 # Titel der Präsentation
+Optionaler Untertitel
 
-## Einführungsfolie
-Ein kurzer Absatz zum Einstieg.
+## Einführung
+Kurzer Text zur Einleitung.
 
-## Folie 1: Konzept
-- Punkt eins
-- Punkt zwei
-- Punkt drei
+## Hauptthema
+- Erster Aufzählungspunkt
+- Zweiter Aufzählungspunkt
+- Dritter Aufzählungspunkt
 
-## Folie 2: Details
-Absatztext mit weiteren Erläuterungen.
-
-- Listenpunkt A
-- Listenpunkt B
+### Untertitel
+Zusätzlicher Text unter der Unterüberschrift.
 
 ## Zusammenfassung
 Fazit der Präsentation.
 ```
 
-Mapping-Regeln:
-- `# Titel` → Titel-Folie (vollbild, großer Titel, Untertitel optional)
-- `## Überschrift` → Neue Folie mit Titelfolie + Inhalt
-- `- Listenpunkt` → Bulletpoints auf der Folie
-- `Absatztext` → Fließtext-Inhalt
-- `---` → Abschnittstrennung (optionale Layout-Änderung)
-- Leerzeilen → ignoriert
+**Mapping-Regeln:**
+
+| Markdown-Syntax | PowerPoint-Element |
+|---|---|
+| `# Titel` | Titel-Folie (Slide 1) — großer Titel zentriert, optionaler Untertitel darunter |
+| `## Überschrift` | Neue Folie — Überschrift als Titel der Folie |
+| `### Unterüberschrift` | Untertitel auf der aktuellen Folie (unter der `##`-Überschrift) |
+| `- Listenpunkt` |ungeordnete Liste (Bulletpoints) |
+| `1. Nummeriert` | Geordnete Liste |
+| `Absatztext` | Fließtext auf der Folie |
+| `**fett**` / `*kursiv*` | Textformatierung |
+| `---` | Abschnittstrenner — beendet aktuelle Folie, beginnt keine neue (Layout-Reset) |
+| Leerzeilen | ignoriert |
+
+**Titel-Folie (Slide 1) — Spezifikation:**
+- Zeigt den Text nach `#` als großen, zentrierten Titel.
+- Optional: Die erste nicht-leere Zeile nach `# Titel` (ohne `##`-Prefix) wird als Untertitel darunter gerendert.
+- Wenn kein `---` oder `##` folgt, ist der Text nach `#` allein der Titel ohne Untertitel.
+
+**Beispiel — Titelfolie mit und ohne Untertitel:**
+```markdown
+# Haupttitel
+Das ist der Untertitel
+## nächste Folie
+```
+→ Titel: "Haupttitel", Untertitel: "Das ist der Untertitel".
+
+```markdown
+# Haupttitel
+
+## nächste Folie
+```
+→ Titel: "Haupttitel", kein Untertitel.
+
+**Output-Dateiname:**
+- Wird aus dem Eingabe-MD-Dateinamen abgeleitet: `folien.md` → `folien.pptx`.
+- Ausgabe im gleichen Verzeichnis wie die Eingabedatei.
+
+**Fehlerbehandlung:**
+- Ungültige MD-Datei (nicht lesbar, Dateityp falsch) → Fehlermeldung in stderr + Exit-Code ≠ 0 + keine .pptx-Datei schreiben.
+- Semantisch ungültige MD (z.B. `##` vor `#`) → Warnung in stderr + Fallback: `# Titel` wird als Titel eingefügt.
+
+**Nicht priorisierte Elemente (zukünftige Erweiterungen):**
+- Zitate (`> Text`)
+- Bilder (`![Alt](url)`)
+- Code-Blöcke (```)
 
 #### Akzeptanzkriterien
 
-- [ ] `# Titel` erstellt eine Titel-Folie (zentriert, groß)
-- [ ] `## Überschrift` erstellt neue Folien mit Titel + Inhalt
-- [ ] `- Listenpunkte` werden als Bulletpoints gerendert
-- [ ] Absatztext als Fließtext auf der Folie
-- [ ] `---` wird als Abschnittstrenner erkannt (optional)
-- [ ] Fehlerhafte MD führt zu Fehlermeldung, nicht zu Absturz
-- [ ] Ausgabe als .pptx-Datei mit exportiertem Dateipfad in der Konsole
+- [ ] CLI-Befehl `ppt-gen <datei.md>` erstellt `.pptx`-Datei im gleichen Verzeichnis
+- [ ] `# Titel` erzeugt Slide 1 mit großem, zentriertem Titel
+- [ ] Optionaler Untertitel auf der Titelfolie wird gerendert, wenn vorhanden
+- [ ] Jede `## Überschrift` erzeugt eine neue Folie mit Überschrift als Titel
+- [ ] `### Unterüberschrift` erscheint als Untertitel auf der aktuellen Folie
+- [ ] `- Listenpunkte` werden als ungeordnete Liste auf der Folie gerendert
+- [ ] `1. Nummeriert` wird als geordnete Liste gerendert
+- [ ] `Absatztext` wird als Fließtext auf der Folie gerendert
+- [ ] `**fett**` und `*kursiv*` werden als Textformatierung gerendert
+- [ ] `---` beendet die aktuelle Folie und startet keine neue (Layout-Reset)
+- [ ] Ausgabedatei heißt `<eingabe>.pptx` (gleicher Name, gleiche Lage)
+- [ ] Pfade mit Leerzeichen im MD-Eingabe-Pfad werden korrekt verarbeitet
+- [ ] Ungültige Eingabe (nicht existierende Datei, falscher Dateityp) → Fehlermeldung in stderr + Exit-Code ≠ 0 + keine .pptx-Datei
+- [ ] Semantische Warnung (z.B. `##` vor `#`) → Warnung in stderr + Fallback-Titel
 
-#### Kontext / Notizen
+#### Kontext / Entschiede
 
-Die MD-Struktur soll intuitiv sein und natürlichem MarkdownWriting entsprechen. Die Generator-Logik in `src/generator.ts` kann als Basis wiederverwendet werden.
+- **Titel-Folie:** Nur `# Titel` → Titel zentriert. Optionaler Untertitel = erste Zeile nach `#` ohne `##`-Prefix.
+- **`---`:** Verpflichtend als Abschnittstrenner (nicht optional).
+- **Output-Dateiname:** Ableiten aus MD-Dateiname (`folien.md` → `folien.pptx`).
+- **Fehlerbehandlung:** Konkrete Exit-Codes — 0 bei Erfolg, 1 bei Eingabefehler, 2 bei Generierungsfehler.
+- **Erweiterbare Elemente:** Zitate, Bilder, Code-Blöcke als niedrig-priorität markiert.
 
 #### Umgesetzte Dateien
 

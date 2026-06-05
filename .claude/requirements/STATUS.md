@@ -10,15 +10,17 @@ Dient als Fortschritts-Tracker. Hier festhalten, wo die Arbeit stehen geblieben 
 
 - **Feature:** MD → PPT Konverter (REQ-001)
 - **Started:** 2026-06-05
-- **Status:** Offen
-- **Nächster Schritt:** Parser für MD → PPT Struktur entwickeln
+- **Status:** In Arbeit (Anforderung überarbeitet)
+- **Nächster Schritt:** MD-Parser-Modul und Slide-Generator implementieren
 
 ### Offene To-Dos
 
 - [ ] MD-Parser-Modul erstellen (src/parser.ts)
 - [ ] MD-Struktur zu SlideConfig mappen
 - [ ] CLI-Option für MD-Input hinzufügen
-- [ ] Fehlerbehandlung für ungültige MD
+- [ ] Fehlerbehandlung für ungültige MD (Exit-Code 1/2)
+- [ ] Titel-Folie mit optionalem Untertitel rendern
+- [ ] `---` als Abschnittstrenner verarbeiten
 - [ ] Tests für MD-Parser schreiben
 
 ### Blockierungen
@@ -29,6 +31,6 @@ Dient als Fortschritts-Tracker. Hier festhalten, wo die Arbeit stehen geblieben 
 
 ## Letzte Sitzung
 
-- **Datum:** —
-- **Was wurde erledigt:** —
-- **Was bleibt:** —
+- **Datum:** 2026-06-05
+- **Was wurde erledigt:** REQ-001 Anforderung überarbeitet, Mapping-Regeln präzisiert, Akzeptanzkriterien konkretisiert, Design-Entscheidungen getroffen
+- **Was bleibt:** Implementierung des MD-Parsers und Slide-Generators
