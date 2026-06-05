@@ -38,4 +38,12 @@ Alle bedeutenden Änderungen an diesem Projekt werden hier dokumentiert.
 ## [0.3.1] – 2026-06-05
 
 ### Hinzugefügt
-- REQ-001: MD → PPT Konverter (Anforderung erstellt)
+- REQ-001: MD → PPT Konverter (Anforderung erstellt und überarbeitet)
+
+### Spezifiziert
+- Mapping-Regeln: `#` → Titelfolie, `##` → neue Folie, `###` → Untertitel, `-` → Bulletpoints, `1.` → geordnete Liste
+- `---` als verpflichtender Abschnittstrenner (nicht optional)
+- Titel-Folie: großer zentrierter Titel, optionaler Untertitel (erste Zeile nach `#` ohne `##`)
+- Output-Dateiname: aus MD-Dateiname abgeleitet (`folien.md` → `folien.pptx`)
+- Fehlerbehandlung: Exit-Code 1 (Eingabefehler), Exit-Code 2 (Generierungsfehler)
+- Erweiterbare Elemente (Zitate, Bilder, Code-Blöcke) als niedrig priorisiert markiert
