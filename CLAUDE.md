@@ -35,6 +35,13 @@ npm run clean    # dist/ entfernen
 - ESLint mit `typescript-eslint` (flat config)
 - Vitest als Test-Launcher
 
+## Anforderungen & Fortschritt
+
+- `.claude/requirements/ANFORDERUNGEN.md` — Master-Index aller Anforderungen mit Status-Tracker
+- `.claude/requirements/STATUS.md` — Aktueller Arbeitsstatus (Fortsetzungsanker)
+- `.claude/requirements/GESCHICHTE.md` — Historie abgeschlossener Arbeit
+- Bei Unterbrechung: STATUS.md als Anker hinterlassen, bei Wiederaufnahme dort weiterlesen
+
 ## Richtlinien
 
 - Code auf Englisch, Kommentare auf Deutsch

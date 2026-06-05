@@ -26,3 +26,11 @@ Alle bedeutenden Änderungen an diesem Projekt werden hier dokumentiert.
 ### Geändert
 - tsconfig.json: moduleResolution → bundler (tsx-kompatibel)
 - CLAUDE.md um CHANGELOG.md Workflow erweitert
+
+## [0.3.0] – 2026-06-05
+
+### Hinzugefügt
+- `.claude/requirements/` — Erforderungs- und Fortschritts-System
+- `ANFORDERUNGEN.md` — Master-Index mit Anforderungstemplate
+- `STATUS.md` — Fortsetzungsanker für Claude Code
+- `GESCHICHTE.md` — Historie abgeschlossener Arbeit
