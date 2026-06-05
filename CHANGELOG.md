@@ -34,3 +34,8 @@ Alle bedeutenden Änderungen an diesem Projekt werden hier dokumentiert.
 - `ANFORDERUNGEN.md` — Master-Index mit Anforderungstemplate
 - `STATUS.md` — Fortsetzungsanker für Claude Code
 - `GESCHICHTE.md` — Historie abgeschlossener Arbeit
+
+## [0.3.1] – 2026-06-05
+
+### Hinzugefügt
+- REQ-001: MD → PPT Konverter (Anforderung erstellt)

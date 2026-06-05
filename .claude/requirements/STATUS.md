@@ -8,14 +8,18 @@ Dient als Fortschritts-Tracker. Hier festhalten, wo die Arbeit stehen geblieben 
 
 ### Aktives Feature / Task
 
-- **Feature:** (nichts aktiv)
-- **Started:** —
-- **Status:** Kein aktiver Task
-- **Nächster Schritt:** —
+- **Feature:** MD → PPT Konverter (REQ-001)
+- **Started:** 2026-06-05
+- **Status:** Offen
+- **Nächster Schritt:** Parser für MD → PPT Struktur entwickeln
 
 ### Offene To-Dos
 
-- [ ] (keine)
+- [ ] MD-Parser-Modul erstellen (src/parser.ts)
+- [ ] MD-Struktur zu SlideConfig mappen
+- [ ] CLI-Option für MD-Input hinzufügen
+- [ ] Fehlerbehandlung für ungültige MD
+- [ ] Tests für MD-Parser schreiben
 
 ### Blockierungen
 
