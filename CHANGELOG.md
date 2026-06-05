@@ -14,3 +14,15 @@ Alle bedeutenden Änderungen an diesem Projekt werden hier dokumentiert.
 ### Baukasten
 - Node.js >= 20 erforderlich
 - Abhängigkeiten: pptxgenjs, @anthropic-ai/sdk
+
+## [0.2.0] – 2026-06-05
+
+### Hinzugefügt
+- ESLint-Konfiguration (typescript-eslint, flat config)
+- vitest.config.ts
+- Erster Test für generator.ts
+- CHANGELOG.md mit Workflow-Richtlinie
+
+### Geändert
+- tsconfig.json: moduleResolution → bundler (tsx-kompatibel)
+- CLAUDE.md um CHANGELOG.md Workflow erweitert
