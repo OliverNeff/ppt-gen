@@ -44,13 +44,21 @@ npm run clean    # dist/ entfernen
 
 ### WICHTIG: Anforderungen-Verwaltung
 
-**ALLES** was `.claude/requirements/` betrifft muss über den Agenten `requirements-manager` laufen.
+**ALLES** was `.claude/requirements/` betrifft muss über den Agenten `analyst` laufen.
 
 - Niemals `.claude/requirements/` Dateien direkt bearbeiten (Read/Write/Edit/Write)
 - Niemals `INDEX.md` referenzieren — existiert nicht
-- Wenn der User eine Anforderung beschreibt → sofort `requirements-manager` Agent starten
+- Wenn der User eine Anforderung beschreibt → sofort `analyst` Agent starten
 - Wenn der User "in die Anforderungen aufnehmen", "REQ erstellen", "Status ändern" sagt → Agent verwenden
 - Wenn der User "abgeschlossen" zu einer Anforderung sagt → Agent mit "abgeschlossen" prompt aufrufen
+
+## Notizen & Archiv (Notable)
+
+- Notizen liegen in `~/.notable/notes/`
+- **ALLES** was `~/.notable/notes/` betrifft muss über den Agenten `archivist` laufen.
+- Niemals `~/.notable/notes/` Dateien direkt bearbeiten (Read/Write/Edit)
+- Wenn der User Notizen erstellen, bearbeiten oder suchen will → `archivist` Agent aufrufen
+- Niemals Notiz-Dateien direkt lesen oder schreiben — immer den Archivist-Agenten verwenden
 
 ## Richtlinien
 
@@ -59,3 +67,10 @@ npm run clean    # dist/ entfernen
 - Keine direkten Push auf main
 - Kleine, inkrementelle Änderungen
 - Nach jedem größeren Task: CHANGELOG.md aktualisieren
+
+## Test-Driven Development (TDD)
+
+- **Jede Implementierung beginnt mit Tests** — Write the tests first, then the implementation.
+- TDD-Zyklus: **Red** (Test schreiben) → **Green** (Test erfolgreich) → **Refactor**
+- Der Developer-Agent sollte sich TDD vor der Implementierung notieren.
+- Beim Start eines Developer-Agents für eine Anforderung explizit TDD anfordern.

@@ -47,3 +47,11 @@ Alle bedeutenden Änderungen an diesem Projekt werden hier dokumentiert.
 - Output-Dateiname: aus MD-Dateiname abgeleitet (`folien.md` → `folien.pptx`)
 - Fehlerbehandlung: Exit-Code 1 (Eingabefehler), Exit-Code 2 (Generierungsfehler)
 - Erweiterbare Elemente (Zitate, Bilder, Code-Blöcke) als niedrig priorisiert markiert
+
+## [0.4.0] – 2026-06-05
+
+### Hinzugefügt
+- PPTX-Datei wird tatsächlich auf Disk geschrieben (output-Ordner)
+- GenerationResult.output enthält den vollständigen Pfad zur generierten .pptx-Datei
+- sanitizeFilename()-Hilfsfunktion zur Sicherung des Dateinamens
+- Tests verifizieren Dateierstellung und Pfad-Validierung

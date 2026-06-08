@@ -2,6 +2,7 @@
 
 export interface SlideConfig {
   title: string
+  subtitle?: string
   content: string[]
   layout?: SlideLayout
 }
@@ -12,6 +13,7 @@ export interface GeneratorOptions {
   title: string
   slides: SlideConfig[]
   theme?: Partial<ThemeConfig>
+  outputPath?: string
 }
 
 export interface ThemeConfig {
