@@ -15,7 +15,12 @@ function normalizeHex(color: string): string {
 
 const OUTPUT_DIR = path.join(process.cwd(), "output")
 
-function sanitizeFilename(name: string): string {
+/**
+ * Removes characters that are invalid in file paths and control characters.
+ * The range \x00-\x1f is intentionally kept — ESLint's no-control-regex is disabled for this line.
+ */
+export function sanitizeFilename(name: string): string {
+  // eslint-disable-next-line no-control-regex
   return name.replace(/[<>:"/\\|?*\x00-\x1f]/g, "_").slice(0, 100)
 }
 

@@ -1,7 +1,41 @@
 import { describe, expect, it } from "vitest"
-import { generatePresentation } from "../src/generator"
+import { generatePresentation, sanitizeFilename } from "../src/generator"
 import { DEFAULT_THEME } from "../src/config"
 import type { ThemeConfig } from "../src/types"
+
+// ====== sanitizeFilename-Tests =============================
+
+describe("sanitizeFilename", () => {
+  it("entfernt ungültige Dateinamen-Zeichen (< > : \" / \\ | ? *)", () => {
+    const result = sanitizeFilename('file:with<>:"/\\|?*chars')
+    expect(result).toBe("file_with_________chars")
+  })
+
+  it("entfernt Control Characters (U+0000 bis U+001F)", () => {
+    const result = sanitizeFilename("foo\x00\x01\x1fbar")
+    expect(result).toBe("foo___bar")
+  })
+
+  it("kürzt Namen auf maximal 100 Zeichen", () => {
+    const longName = "a".repeat(150)
+    const result = sanitizeFilename(longName)
+    expect(result.length).toBe(100)
+  })
+
+  it("unverändert bei sauberen Eingaben", () => {
+    expect(sanitizeFilename("gute-dateiname")).toBe("gute-dateiname")
+  })
+
+  it("ersetzt nur ungültige Zeichen, lässt Bindestrich und Punkt", () => {
+    expect(sanitizeFilename("test-file.v2")).toBe("test-file.v2")
+  })
+
+  it("leerer String ergibt leerer String", () => {
+    expect(sanitizeFilename("")).toBe("")
+  })
+})
+
+// ====== generatePresentation — Unit Tests (UT-1.x) ========
 
 describe("generatePresentation — Unit Tests (UT-1.x)", () => {
   it("UT-1.1: Erstellt Präsentation mit SlideCount == Anzahl der Input-Slides", async () => {
