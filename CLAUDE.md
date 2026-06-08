@@ -68,6 +68,16 @@ npm run clean    # dist/ entfernen
 - Kleine, inkrementelle Änderungen
 - Nach jedem größeren Task: CHANGELOG.md aktualisieren
 
+## CI-Fehler-Behandlung
+
+Bei Fehlern in der CI-Pipeline (lint, tests, build):
+- **NICHT selbst fixen** — direkt die Agents einsetzen:
+  1. **Developer-Agent** → fixt den Fehler (linting, build, code quality)
+  2. **Tester-Agent** → verifiziert dass lint/tests/build wieder durchgehen
+- Nie manuell Code ändern oder Tests ausführen — immer Agents delegieren
+- Immer erst den Developer fixen lassen, dann den Tester zur Prüfung anstoßen
+- Der Developer soll sich TDD vor der Implementierung notieren
+
 ## Test-Driven Development (TDD)
 
 - **Jede Implementierung beginnt mit Tests** — Write the tests first, then the implementation.
