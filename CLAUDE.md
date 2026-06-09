@@ -42,6 +42,11 @@ npm run clean    # dist/ entfernen
 - `.claude/requirements/GESCHICHTE.md` — Historie abgeschlossener Arbeit
 - Bei Unterbrechung: STATUS.md als Anker hinterlassen, bei Wiederaufnahme dort weiterlesen
 
+### WICHTIG: Anforderungen-Commit
+
+**Requirements-Änderungen SOFORT nach Abschluss committen und pushen — nicht aufheben.**
+Niemals mehrere Anforderungen-Commits zusammenfassen. Nie warten bis der User danach fragt.
+
 ### WICHTIG: Anforderungen-Verwaltung
 
 **ALLES** was `.claude/requirements/` betrifft muss über den Agenten `analyst` laufen.
