@@ -4,6 +4,14 @@ Chronologische Übersicht der abgeschlossenen Arbeit.
 
 ---
 
+## [2026-06-08]
+
+- REQ-002 erfasst: Professionelle Folienhintergründe
+  - Master-Hintergrund pro Theme
+  - Individuelles Slide-Hintergrundbild pro Folie
+  - Professionelles Erscheinungsbild mit Overlay & Fallback
+  - Priorität: Hoch
+
 ## [2026-06-05]
 
 - REQ-001 Anforderung überarbeitet: Mapping-Regeln präzisiert, Akzeptanzkriterien konkretisiert

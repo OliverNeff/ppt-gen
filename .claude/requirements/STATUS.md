@@ -13,6 +13,14 @@ Dient als Fortschritts-Tracker. Hier festhalten, wo die Arbeit stehen geblieben 
 - **Status:** In Arbeit (Anforderung überarbeitet)
 - **Nächster Schritt:** MD-Parser-Modul und Slide-Generator implementieren
 
+### Geplante Features
+
+- **Feature:** Professionelle Folienhintergründe (REQ-002)
+- **Status:** Offen
+- **Priorität:** Hoch
+- **Geplant:** Nach REQ-001 abgeschlossen
+- **Nächster Schritt:** pptxgenjs `background`-API prüfen, Theme-Konfiguration erweitern
+
 ### Offene To-Dos
 
 - [ ] MD-Parser-Modul erstellen (src/parser.ts)

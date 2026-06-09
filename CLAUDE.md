@@ -42,6 +42,11 @@ npm run clean    # dist/ entfernen
 - `.claude/requirements/GESCHICHTE.md` — Historie abgeschlossener Arbeit
 - Bei Unterbrechung: STATUS.md als Anker hinterlassen, bei Wiederaufnahme dort weiterlesen
 
+### WICHTIG: Anforderungen-Commit
+
+**Requirements-Änderungen SOFORT nach Abschluss committen und pushen — nicht aufheben.**
+Niemals mehrere Anforderungen-Commits zusammenfassen. Nie warten bis der User danach fragt.
+
 ### WICHTIG: Anforderungen-Verwaltung
 
 **ALLES** was `.claude/requirements/` betrifft muss über den Agenten `analyst` laufen.
@@ -67,6 +72,16 @@ npm run clean    # dist/ entfernen
 - Keine direkten Push auf main
 - Kleine, inkrementelle Änderungen
 - Nach jedem größeren Task: CHANGELOG.md aktualisieren
+
+## CI-Fehler-Behandlung
+
+Bei Fehlern in der CI-Pipeline (lint, tests, build):
+- **NICHT selbst fixen** — direkt die Agents einsetzen:
+  1. **Developer-Agent** → fixt den Fehler (linting, build, code quality)
+  2. **Tester-Agent** → verifiziert dass lint/tests/build wieder durchgehen
+- Nie manuell Code ändern oder Tests ausführen — immer Agents delegieren
+- Immer erst den Developer fixen lassen, dann den Tester zur Prüfung anstoßen
+- Der Developer soll sich TDD vor der Implementierung notieren
 
 ## Test-Driven Development (TDD)
 

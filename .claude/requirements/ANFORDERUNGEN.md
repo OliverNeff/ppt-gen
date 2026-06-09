@@ -9,6 +9,7 @@ Master-Index aller Projektanforderungen. Eintrag für jede Anforderung, Status-T
 | ID   | Titel                        | Status     | Priorität | Erstellt   | Abgeschlossen |
 | ---  | ---------------------------- | ---------- | --------- | ---------- | ------------- |
 | REQ-001 | MD → PPT Konverter         | In Arbeit  | Hoch      | 2026-06-05 |               |
+| REQ-002 | Professionelle Folienhintergründe | Offen   | Hoch      | 2026-06-08 |               |
 
 ---
 
@@ -161,6 +162,63 @@ _Nothing yet._
 ## Erledigte Anforderungen
 
 _Nothing yet._
+
+---
+
+## Offene Anforderungen
+
+### REQ-002 — Professionelle Folienhintergründe
+
+**Status:** Offen
+**Priorität:** Hoch
+**Erstellt:** 2026-06-08
+**Abgeschlossen:**
+
+#### Beschreibung
+
+Professionelles Design für die generierten Präsentationen durch konfigurierbare Hintergrundbilder auf zwei Ebenen:
+1. Ein globaler Master-Hintergrund pro Theme, der auf allen Folien konsistent erscheint.
+2. Die Möglichkeit, für jede einzelne Folie ein individuelles Hintergrundbild zu überschreiben.
+
+#### Anforderungen im Detail
+
+**1. Master-Hintergrund pro Theme**
+- Jedes Theme (z.B. `corporate`, `minimal`, `creative`) definiert einen standardisierten Master-Hintergrund.
+- Der Master-Hintergrund wird automatisch auf alle Folien angewendet, die kein eigenes Hintergrundbild haben.
+- Hintergrundbilder werden über die Theme-Konfiguration referenziert (`backgroundImage` oder `masterBackground`).
+- Der Master-Hintergrund muss den gesamten Slide-Bereich abdecken (fit-to-slide), ohne Verzerrung.
+- Optional: Leichte Transparenz/Overlay ermöglichen, damit Text lesbar bleibt.
+
+**2. Individuelles Slide-Hintergrundbild**
+- Jede Folie kann ein eigenes Hintergrundbild erhalten, das den Master-Hintergrund überschreibt.
+- Das Slide-Hintergrundbild wird pro SlideConfig-Objekt konfigurierbar gemacht (`backgroundImage`-Feld).
+- Gleiche Fit-to-Slide-Logik wie beim Master-Hintergrund.
+- Bei fehlendem Bild-Feld wird auf den Master-Hintergrund zurückgegriffen (Fallback).
+
+**3. Professionelles Erscheinungsbild**
+- Hintergrundbilder müssen kantenlos und verzerrungsfrei skalieren (cover-mode).
+- Kontrast sicherheit: Text bleibt lesbar — optionaler dunkler/heller Overlay als Schutz.
+- Fallback: Wenn kein gültiges Hintergrundbild verfügbar ist, wird ein sauberer Farbverlauf als Ersatz gerendert.
+- Die Kombination aus Theme-Farben und Hintergrundbildern muss visuell harmonisch sein.
+
+#### Akzeptanzkriterien
+
+- [ ] Themes können ein Master-Hintergrundbild konfigurieren
+- [ ] Master-Hintergrund wird automatisch auf alle Folien angewendet
+- [ ] Individuelle Slide-Hintergrundbilder überschreiben den Master-Hintergrund pro Folie
+- [ ] Hintergrundbilder skaliern verzerrungsfrei im Cover-Modus (fit-to-slide)
+- [ ] Optionaler Overlay (dunkel/hell) verbessert Textlesbarkeit auf Bildern
+- [ ] Fallback auf Farbverlauf bei fehlendem/gültigem Hintergrundbild
+- [ ] Theme-Definitionen (corporate, minimal, creative) haben jeweils eigene Hintergrundbilder
+- [ ] SlideConfig um `backgroundImage`-Feld erweitert
+- [ ] Tests für alle drei Skalierungs- & Overlay-Szenarien vorhanden
+
+#### Kontext / Entscheidungen
+
+- **pptxgenjs-Unterstützung:** `backgroundImage` über die pptxgenjs API (Folien-level `background`-Attribut).
+- **Reihenfolge:** Slide-Foto → Master-Foto → Farbverlauf-Fallback.
+- **Performance:** Hintergrundbilder sollten geladen und gecacht werden, um bei grossen Präsentionen keine Verzögerung zu verursachen.
+- **Erweiterbare Elemente:** Textoverlay, Wasserzeichen, Slide-Transition-Hintergründe als niedrig-priorität markiert.
 
 ---
 
